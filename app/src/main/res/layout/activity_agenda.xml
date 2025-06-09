@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
     android:background="#121212">
 
     <LinearLayout
@@ -23,32 +24,37 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/btnSeg"
                     android:text="Seg"
-                    android:selected="true"
                     style="@style/TimeSlotButton"/>
-                >
 
                 <Button
+                    android:id="@+id/btnTer"
                     android:text="Ter"
                     style="@style/TimeSlotButton"/>
 
                 <Button
+                    android:id="@+id/btnQua"
                     android:text="Qua"
                     style="@style/TimeSlotButton"/>
 
                 <Button
+                    android:id="@+id/btnQui"
                     android:text="Qui"
                     style="@style/TimeSlotButton"/>
 
                 <Button
+                    android:id="@+id/btnSex"
                     android:text="Sex"
                     style="@style/TimeSlotButton"/>
 
                 <Button
+                    android:id="@+id/btnSab"
                     android:text="Sab"
                     style="@style/TimeSlotButton"/>
 
                 <Button
+                    android:id="@+id/btnDom"
                     android:text="Dom"
                     style="@style/TimeSlotButton"/>
 
@@ -74,32 +80,32 @@
             android:useDefaultMargins="true">
 
             <!-- Linha 1 -->
-            <Button android:text="09:00" style="@style/TimeSlotButton"/>
-            <Button android:text="09:30" style="@style/TimeSlotButton"/>
-            <Button android:text="10:00" style="@style/TimeSlotButton"/>
-            <Button android:text="10:30" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b0900" android:text="09:00" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b0930" android:text="09:30" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b1000" android:text="10:00" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b1030" android:text="10:30" style="@style/TimeSlotButton"/>
 
             <!-- Linha 2 -->
-            <Button android:text="11:00" style="@style/TimeSlotButton"/>
-            <Button android:text="13:00" style="@style/TimeSlotButton"/>
-            <Button android:text="13:30" style="@style/TimeSlotButton"/>
-            <Button android:text="14:00" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b1100" android:text="11:00" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b1300" android:text="13:00" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b1330" android:text="13:30" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b1400" android:text="14:00" style="@style/TimeSlotButton"/>
 
             <!-- Linha 3 -->
-            <Button android:text="14:30" style="@style/TimeSlotButton"/>
-            <Button android:text="15:00" style="@style/TimeSlotButton"/>
-            <Button android:text="15:30" style="@style/TimeSlotButton"/>
-            <Button android:text="16:00" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b1430" android:text="14:30" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b1500" android:text="15:00" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b1530" android:text="15:30" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b1600" android:text="16:00" style="@style/TimeSlotButton"/>
 
             <!-- Linha 4 -->
-            <Button android:text="16:30" style="@style/TimeSlotButton"/>
-            <Button android:text="17:00" style="@style/TimeSlotButton"/>
-            <Button android:text="17:30" style="@style/TimeSlotButton"/>
-            <Button android:text="18:00" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b1630" android:text="16:30" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b1700" android:text="17:00" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b1730" android:text="17:30" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b1800" android:text="18:00" style="@style/TimeSlotButton"/>
 
             <!-- Linha 5 -->
-            <Button android:text="18:30" style="@style/TimeSlotButton"/>
-            <Button android:text="19:00" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b1830" android:text="18:30" style="@style/TimeSlotButton"/>
+            <Button android:id="@+id/b1900" android:text="19:00" style="@style/TimeSlotButton"/>
 
         </GridLayout>
 
