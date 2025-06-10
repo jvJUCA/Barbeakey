@@ -53,25 +53,18 @@ public class agendaActivity extends AppCompatActivity {
             final int index = i;
             botoesDias[i].setOnClickListener(v -> {
                 diaSelecionado = nomesDias[index];
-                atualizarCorDosDias(index);
                 carregarHorarios();
             });
         }
 
-        // Inicializa botões de horário
+
         for (String horario : horarios) {
             int resID = getResources().getIdentifier("b" + horario.replace(":", ""), "id", getPackageName());
             Button btn = findViewById(resID);
             botoesHorario.put(horario, btn);
         }
 
-        carregarHorarios(); // carrega "Seg" ao abrir
-    }
-
-    void atualizarCorDosDias(int selecionado) {
-        for (int i = 0; i < botoesDias.length; i++) {
-            botoesDias[i].setBackgroundColor(i == selecionado ? Color.parseColor("#FFBB33") : Color.WHITE);
-        }
+        carregarHorarios();
     }
 
     void carregarHorarios() {
@@ -82,27 +75,50 @@ public class agendaActivity extends AppCompatActivity {
             if (btn != null) {
                 final String h = horario;
 
-                // Limpa estado visual do botão
-                btn.setEnabled(true);
-                btn.setAlpha(1.0f);
-                btn.setText(h);
+
+                btn.setEnabled(false);
+                btn.setAlpha(0.5f);
+                btn.setText("Carregando...");
+                btn.setOnClickListener(null);
+
 
                 dbRef.child(diaSelecionado).child(h).get().addOnSuccessListener(snapshot -> {
                     if (snapshot.exists()) {
-                        // Já reservado
+
                         btn.setEnabled(false);
                         btn.setAlpha(0.5f);
                         btn.setText("Indisp.");
+                        btn.setOnClickListener(null);
                     } else {
-                        // Disponível – seta o clique aqui dentro
+
+                        btn.setEnabled(true);
+                        btn.setAlpha(1.0f);
+                        btn.setText(h);
+
+
                         btn.setOnClickListener(v -> {
-                            dbRef.child(diaSelecionado).child(h).setValue("reservado");
                             btn.setEnabled(false);
                             btn.setAlpha(0.5f);
                             btn.setText("Reservado");
-                            Toast.makeText(this, "Horário reservado: " + h, Toast.LENGTH_SHORT).show();
+
+                            dbRef.child(diaSelecionado).child(h).setValue("reservado")
+                                    .addOnSuccessListener(aVoid -> {
+                                        Toast.makeText(this, "Horário reservado: " + h, Toast.LENGTH_SHORT).show();
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        btn.setEnabled(true);
+                                        btn.setAlpha(1.0f);
+                                        btn.setText(h);
+                                        Toast.makeText(this, "Erro ao reservar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    });
                         });
                     }
+                }).addOnFailureListener(e -> {
+                    btn.setEnabled(true);
+                    btn.setAlpha(1.0f);
+                    btn.setText(h);
+                    btn.setOnClickListener(null);
+                    Toast.makeText(this, "Erro ao carregar status do horário.", Toast.LENGTH_SHORT).show();
                 });
             }
         }
